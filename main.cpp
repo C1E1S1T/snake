@@ -1,10 +1,7 @@
-#include "console.h"
+#include "gamecontroller.h"
 
 int main() {
-    Console* console = new Console("Snake");
-    console->setCursor({0,0}, 201);
-    system("pause>nul");
-    return 0;
+	GameController game;
+	game.play();
+	return 0;
 }
-
-

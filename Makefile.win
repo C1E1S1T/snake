@@ -1,15 +1,16 @@
-# Project: Project4
+# Project: snake
 # Makefile created by Dev-C++ 5.11
 
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o console.o
-LINKOBJ  = main.o console.o
+RES      = make/snake_private.res
+OBJ      = make/main.o make/gamecontroller.o make/consoleview.o make/coordinateview.o $(RES)
+LINKOBJ  = make/main.o make/gamecontroller.o make/consoleview.o make/coordinateview.o $(RES)
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
-BIN      = snake.exe
+BIN      = bin/snake.exe
 CXXFLAGS = $(CXXINCS) 
 CFLAGS   = $(INCS) 
 RM       = rm.exe -f
@@ -24,8 +25,18 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-main.o: main.cpp
-	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+make/main.o: main.cpp
+	$(CPP) -c main.cpp -o make/main.o $(CXXFLAGS)
 
-console.o: console.cpp
-	$(CPP) -c console.cpp -o console.o $(CXXFLAGS)
+make/gamecontroller.o: gamecontroller.cpp
+	$(CPP) -c gamecontroller.cpp -o make/gamecontroller.o $(CXXFLAGS)
+
+make/consoleview.o: consoleview.cpp
+	$(CPP) -c consoleview.cpp -o make/consoleview.o $(CXXFLAGS)
+
+make/coordinateview.o: coordinateview.cpp
+	$(CPP) -c coordinateview.cpp -o make/coordinateview.o $(CXXFLAGS)
+
+make/snake_private.res: snake_private.rc 
+	$(WINDRES) -i snake_private.rc --input-format=rc -o make/snake_private.res -O coff 
+
