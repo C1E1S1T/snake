@@ -1,5 +1,6 @@
 #include "consoleview.h"
-#include "coordinateview.h"
+#include "snakecontroller.h"
+#include <vector>
 #ifndef GAMECONTROLLER_H
 #define GAMECONTROLLER_H
 

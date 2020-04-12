@@ -6,8 +6,11 @@
 class CoordinateView {
 	private:
 		UserInterface* userInterface;
+		int sizeBody = 1;
 		COORD coordinate = {0,0};
+		COORD before = {0,0};
 	public:
+		CoordinateView();
 		CoordinateView(UserInterface* userInterface);
 		toRight();
 		toLeft();

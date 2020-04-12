@@ -4,25 +4,15 @@ GameController::GameController() {
 }
 
 GameController::play() {
-	CoordinateView coordinateView(this->userInterface);
+	
+	SnakeController snake(CoordinateView(this->userInterface));
 	int key = 0;
 	do {
-	  key = this->userInterface->getKeyPress();
-	  coordinateView.hide();
-	  switch(key) {
-	  	case UP:
-		  	coordinateView.toUp();
-		  	break;
-	    case DOWN:
-	    	coordinateView.toDown();
-	    	break;
-	    case RIGHT:
-	    	coordinateView.toRight();
-	    	break;
-	    case LEFT:
-	    	coordinateView.toLeft();
-	    	break;
+	  if (kbhit()) {
+	  	key = this->userInterface->getKeyPress();
+	  	snake.setDirection(key);
 	  }
-	  coordinateView.show();
+	  Sleep(70);
+	  snake.move();
 	} while(key != ESCAPE);
 }
