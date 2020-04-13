@@ -1,18 +1,18 @@
 # Project: snake
 # Makefile created by Dev-C++ 5.11
 
-CPP      = g++.exe
-CC       = gcc.exe
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
 WINDRES  = windres.exe
 RES      = make/snake_private.res
-OBJ      = make/main.o make/gamecontroller.o make/consoleview.o make/coordinateview.o make/snakecontroller.o $(RES)
-LINKOBJ  = make/main.o make/gamecontroller.o make/consoleview.o make/coordinateview.o make/snakecontroller.o $(RES)
-LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
+OBJ      = make/main.o make/gamecontroller.o make/consoleview.o make/coordinateview.o make/snakecontroller.o make/caretaker.o $(RES)
+LINKOBJ  = make/main.o make/gamecontroller.o make/consoleview.o make/coordinateview.o make/snakecontroller.o make/caretaker.o $(RES)
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -g3
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
 BIN      = bin/snake.exe
-CXXFLAGS = $(CXXINCS) 
-CFLAGS   = $(INCS) 
+CXXFLAGS = $(CXXINCS) -g3
+CFLAGS   = $(INCS) -g3
 RM       = rm.exe -f
 
 .PHONY: all all-before all-after clean clean-custom
@@ -39,6 +39,9 @@ make/coordinateview.o: coordinateview.cpp
 
 make/snakecontroller.o: snakecontroller.cpp
 	$(CPP) -c snakecontroller.cpp -o make/snakecontroller.o $(CXXFLAGS)
+
+make/caretaker.o: caretaker.cpp
+	$(CPP) -c caretaker.cpp -o make/caretaker.o $(CXXFLAGS)
 
 make/snake_private.res: snake_private.rc 
 	$(WINDRES) -i snake_private.rc --input-format=rc -o make/snake_private.res -O coff 

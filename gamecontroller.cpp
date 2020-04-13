@@ -3,8 +3,7 @@
 GameController::GameController() {
 }
 
-GameController::play() {
-	
+GameController::play() {	
 	SnakeController snake(CoordinateView(this->userInterface));
 	int key = 0;
 	do {
