@@ -12,6 +12,7 @@ class Caretaker {
 	public:
 		setMemento(COORD memento);
 		COORD getMemento();
+		add();
 };
 
 #endif

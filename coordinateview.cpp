@@ -3,10 +3,14 @@
 CoordinateView::CoordinateView() {
 }
 
-CoordinateView::CoordinateView(UserInterface* userInterface) {
+CoordinateView::CoordinateView(
+    UserInterface* userInterface,
+    map<int, int>& pieces
+) {
 	this->userInterface = userInterface;
 	this->caretaker = new Caretaker();
 	this->caretaker->setMemento({this->coordinate.X, this->coordinate.Y});
+	this->pieces = pieces;
 }
 
 CoordinateView::toUp() {
@@ -26,8 +30,17 @@ CoordinateView::toLeft() {
 }
 
 CoordinateView::show() {
-	this->userInterface->setCoordinate(this->coordinate, 42);
+	this->userInterface->setCoordinate(this->coordinate, 178);
 	this->caretaker->setMemento({this->coordinate.X, this->coordinate.Y});
+	if (this->pieces.count(this->coordinate.X) > 0 && this->pieces.at(this->coordinate.X) == this->coordinate.Y) {
+		this->caretaker->add();
+		this->userInterface->setCoordinate({118, 2}, 0);
+		cout<<++this->score;
+	}
+}
+
+COORD CoordinateView::getHead() {
+	return this->coordinate;
 }
 
 CoordinateView::hide() {

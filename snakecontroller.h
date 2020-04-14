@@ -10,7 +10,7 @@ class SnakeController {
 		SnakeController();
 		SnakeController(CoordinateView coordinate);
 		setDirection(int direction);
-		move();
+		bool move();
 };
 
 #endif

@@ -18,7 +18,15 @@ SnakeController::setDirection(int key) {
 	}
 }
 
-SnakeController::move() {
+bool SnakeController::move() {
+	if (
+	    this->coordinate.getHead().Y < 2 ||
+		this->coordinate.getHead().Y >= 28 ||
+		this->coordinate.getHead().X < 2 ||
+		this->coordinate.getHead().X >= 110
+		) {
+		return false;
+	}
 	this->coordinate.show();
 	switch(this->direction) {
 		case UP:
@@ -35,4 +43,5 @@ SnakeController::move() {
 		    break;
 	}
 	this->coordinate.hide();
+	return true;
 }

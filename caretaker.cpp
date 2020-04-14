@@ -9,3 +9,7 @@ COORD Caretaker::getMemento() {
 	int index = (size <= this->numItems) ? size-1 : size-this->numItems-1;
 	return this->coords.at(index);
 }
+
+Caretaker::add() {
+	this->numItems++;
+}
